@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Aplikasi Ulang Tahun</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 350px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .hasil {
+            margin-top: 15px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <img src="https://www.facebook.com/photo/?fbid=588447223451465&set=a.588447210118133" alt="">
+</div>
+
+<div class="box">
+    <h2>🎉 Ucapan Ulang Tahun 🎉</h2>
+
+    <input type="text" id="nama" placeholder="Masukkan nama">
+    <input type="date" id="tanggal">
+
+    <button onclick="cekUlangTahun()">Cek</button>
+
+    <div class="hasil" id="hasil"></div>
+</div>
+
+<script>
+function cekUlangTahun() {
+    const nama = document.getElementById("nama").value;
+    const tanggal = document.getElementById("tanggal").value;
+    const hasil = document.getElementById("hasil");
+
+    if (!nama || !tanggal) {
+        hasil.innerHTML = "❌ Nama dan tanggal harus diisi";
+        return;
+    }
+
+    const today = new Date();
+    const tgl = new Date(tanggal);
+    tgl.setFullYear(today.getFullYear());
+
+    const selisih = Math.ceil((tgl - today) / (1000 * 60 * 60 * 24));
+
+    if (selisih === 0) {
+        hasil.innerHTML = `🎊 Selamat ulang tahun, <b>${nama}</b>! 🎊`;
+    } else if (selisih > 0) {
+        hasil.innerHTML = `🎂 ${selisih} hari lagi menuju ulang tahun`;
+    } else {
+        hasil.innerHTML = `😊 Ulang tahun sudah lewat tahun ini`;
+    }
+}
+</script>
+
+</body>
+</html>
